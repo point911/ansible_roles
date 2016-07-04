@@ -1,0 +1,35 @@
+---
+
+logstash:
+  # If set to no you will need to write all config files
+  # in an extending role
+  default_config: yes
+  family: 2.3
+  group: logstash
+  java_heap_size: "{{ (ansible_memtotal_mb / 2) | int }}"
+  user: logstash
+  version: 1:2.3.1-1
+
+  inputs:
+    json:
+      port: 5001
+    file:
+      path: /tmp/output.log
+
+  java:
+    version: 8
+
+  outputs:
+    elasticsearch:
+      host: elasticsearch.elk.internal
+      port: 9200
+
+    kafka:
+      bootstrap_servers: "{{ hostvars[groups['tag_Name_learnkafka'][0]]['ec2_private_ip_address'] }}:9092"
+      topic_id: logstash
+
+  plugins:
+    - logstash-patterns-core
+    - logstash-filter-prune
+
+  plugins_update: []

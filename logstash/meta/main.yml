@@ -1,0 +1,20 @@
+---
+
+dependencies:
+  - role: sansible.java
+    version: v1.0
+    java:
+      version: "{{ logstash.java.version }}"
+    tags:
+      - build
+
+  - role: sansible.users_and_groups
+    version: v1.0
+    users_and_groups:
+      groups:
+        - name: "{{ logstash.group }}"
+      users:
+        - name: "{{ logstash.user }}"
+          group: "{{ logstash.group }}"
+    tags:
+      - build
