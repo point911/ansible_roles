@@ -1,0 +1,7 @@
+---
+
+- name: Generate aws vars
+  template:
+    src: vars/aws/aws.yaml.template
+    dest: vars/aws/aws.yaml
+    backup: true
