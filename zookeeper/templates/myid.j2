@@ -1,0 +1,14 @@
+{%- if zookeeper.aws_cluster_autodiscover.data is defined -%}
+{{ zookeeper.aws_cluster_autodiscover.data.id }}
+{%- else -%}
+{%- if (zookeeper.id is defined) and (zookeeper.hosts|length == 1) -%}
+{{ zookeeper.id }}
+{%- else -%}
+{% for url in zookeeper.hosts %}
+{%- set url_host = url.split(':')[0] -%}
+{%- if url_host in ansible_all_ipv4_addresses -%}
+{{ loop.index0 + 1 }}
+{% endif %}
+{% endfor %}
+{%- endif -%}
+{%- endif -%}
