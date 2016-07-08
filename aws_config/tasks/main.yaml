@@ -2,6 +2,6 @@
 
 - name: Generate aws vars
   template:
-    src: vars/aws/aws.yaml.template|default('vars/aws/aws.yaml.template')
-    dest: vars/aws/aws.yaml|default('vars/aws/aws.yaml')
+    src: aws_vars_template_path|default('vars/aws/aws.yaml.template')
+    dest: aws_vars_path|default('vars/aws/aws.yaml')
     backup: true
