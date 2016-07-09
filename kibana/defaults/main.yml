@@ -1,0 +1,18 @@
+---
+
+kibana:
+  host: "{{ hostvars[groups['tag_Name_elk_standalone'][0]]['ec2_private_ip_address'] }}"
+  install_dir: "/usr/share/kibana4"
+  port: 5601
+  tarball: "kibana-4.5.1-linux-x64"
+
+  elasticsearch:
+    host: "{{ hostvars[groups['tag_Name_elk_standalone'][0]]['ec2_private_ip_address'] }}"
+    port: 9200
+
+  plugins:
+    - plugin_name: elasticsearch/marvel/latest
+      plugin_dir:  marvel
+    - plugin_name: elasticsearch/timelion/latest
+      plugin_dir:  timelion
+

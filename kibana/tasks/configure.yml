@@ -1,0 +1,16 @@
+---
+
+- name: Configure Kibana
+  become: yes
+  template:
+    src: kibana.yml.j2
+    dest: "{{ kibana.install_dir }}/config/kibana.yml"
+  notify:
+    - start kibana
+
+# This part does not work with current upstart script
+- name: Ensure Kibana service is started
+  become: yes
+  service:
+    name: kibana4
+    state: started
