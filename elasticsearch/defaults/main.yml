@@ -31,8 +31,8 @@ elasticsearch:
   plugins:
     - plugin_name: mobz/elasticsearch-head
       plugin_dir:  head
-    - plugin_name: royrusso/elasticsearch-HQ
-      plugin_dir:  HQ
+#    - plugin_name: royrusso/elasticsearch-HQ
+#      plugin_dir:  HQ
     - plugin_name: license
       plugin_dir:  license
     - plugin_name: marvel-agent
