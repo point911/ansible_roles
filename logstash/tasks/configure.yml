@@ -12,7 +12,7 @@
 - name: Configure logstash
   become: yes
   template:
-    src: "{{ item }}.j2"
+    src: "{{ logstash.templates_path }}{{ item }}.j2"
     dest: "/etc/logstash/conf.d/{{ item }}"
   with_items:
     - 01-inputs.conf
