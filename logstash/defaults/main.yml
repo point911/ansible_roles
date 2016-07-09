@@ -12,14 +12,14 @@ logstash:
   user: logstash
   version: 1:2.3.1-1
 
-  inputs:
-    json:
-      port: 5001
-    file:
-      path: /tmp/output.log
-
   java:
     version: 8
+
+#  inputs:
+#    json:
+#      port: 5001
+#    file:
+#      path: /tmp/output.log
 
 #  outputs:
 #    elasticsearch:
