@@ -21,14 +21,14 @@ logstash:
   java:
     version: 8
 
-  outputs:
-    elasticsearch:
-      host: elasticsearch.elk.internal
-      port: 9200
-
-    kafka:
-      bootstrap_servers: "{{ hostvars[groups['tag_Name_learnkafka'][0]]['ec2_private_ip_address'] }}:9092"
-      topic_id: logstash
+#  outputs:
+#    elasticsearch:
+#      host: elasticsearch.elk.internal
+#      port: 9200
+#
+#    kafka:
+#      bootstrap_servers: "{{ hostvars[groups['tag_Name_learnkafka'][0]]['ec2_private_ip_address'] }}:9092"
+#      topic_id: logstash
 
   plugins:
     - logstash-patterns-core
