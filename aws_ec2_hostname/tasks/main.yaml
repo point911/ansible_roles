@@ -4,7 +4,7 @@
 
 - name: Update /etc/hosts file for better network name resolution
   blockinfile:
-  dest: /etc/hosts
-  block: |
-    {{ ec2_private_ip_address }} {{ ec2_tag_Name | replace('_', '-') }}
-  marker: "# {{ ec2_tag_Name }}"
+    dest: /etc/hosts
+    block: |
+      {{ ec2_private_ip_address }} {{ ec2_tag_Name | replace('_', '-') }}
+    marker: "# {{ ec2_tag_Name }}"
