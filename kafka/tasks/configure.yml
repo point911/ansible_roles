@@ -33,7 +33,7 @@
   notify:
     - restart kafka
   when: not kafka.use_systemd
-#
+
 - name: Create systemd config
   become: yes
   template:
