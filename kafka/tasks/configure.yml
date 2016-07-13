@@ -18,6 +18,8 @@
     dest: "/home/{{ kafka.user }}/kafka/bin/kafka-run-class.sh"
     regexp: "KAFKA_JMX_OPTS=.*-Dcom.sun.management.jmxremote.authenticate"
     line: "KAFKA_JMX_OPTS=\"{{ kafka.jmx_opts }}\""
+  notify:
+    - restart kafka
   when: kafka.jmx_opts is defined
 
 - name: Create upstart config
@@ -28,8 +30,8 @@
     group: root
     mode: 0644
     src: kafka.conf.j2
-#  notify:
-#    - restart kafka
+  notify:
+    - restart kafka
   when: not kafka.use_systemd
 #
 - name: Create systemd config
@@ -56,8 +58,8 @@
     dest: "/home/{{ kafka.user }}/etc/log4j.properties"
     mode: 0644
     src: log4j.properties.j2
-#  notify:
-#    - restart kafka
+  notify:
+    - restart kafka
 
 
 - name: Create server.properties
@@ -67,8 +69,8 @@
     dest: "/home/{{ kafka.user }}/etc/server.properties"
     mode: 0640
     src: server.properties.j2
-#  notify:
-#    - restart kafka
+  notify:
+    - restart kafka
 
 - name: Ensure Kafka is running
   become: yes
