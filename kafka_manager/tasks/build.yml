@@ -42,6 +42,7 @@
   become: yes
   become_user: "{{ kafka_manager.user }}"
   file:
-    path: "/home/{{ kafka_manager.user }}/kafka_manage"
+    path: "/home/{{ kafka_manager.user }}/kafka_manager"
     src: "/home/{{ kafka_manager.user }}/kafka-manager-{{ kafka_manager.sources_tag }}"
     state: link
+    force: yes
