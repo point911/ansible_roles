@@ -10,6 +10,7 @@
   with_items:
     - "/home/{{ kafka_manager.user }}/etc"
 
+
 - name: Fetch kafka manager sources
   become: yes
   become_user: "{{ kafka_manager.user }}"
@@ -42,5 +43,5 @@
   become_user: "{{ kafka_manager.user }}"
   file:
     path: "/home/{{ kafka.user }}/kafka_manager"
-    src: "/home/{{ kafka.user }}/kafka-manager-{{ kafka_manager.sources_tag }}"
+    src: "/home/{{ kafka.user }}/kafka-manager-{{ kafka_manager.sources_tag }}.zip"
     state: link
