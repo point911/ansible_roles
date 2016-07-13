@@ -1,3 +1,5 @@
 kafka_manager:
   user: kafka-manager
-  sources_tag: master
+  sources_tag: 1.3.0.8
+  upstart_conf: /etc/init/kafka-manager.conf
+  port: 9000

@@ -23,4 +23,4 @@
   unarchive:
     copy=no
     src=/tmp/kafka-manager.zip
-    dest=/home/{{ kafka_manager.user }}/kafka-manager
+    dest=/home/{{ kafka_manager.user }}/
