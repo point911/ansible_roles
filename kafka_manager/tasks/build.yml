@@ -24,7 +24,7 @@
   become: yes
   become_user: "{{ kafka_manager.user }}"
   copy:
-    src: {{ kafka_manager.zip_path }}
+    src: "{{ kafka_manager.zip_path }}"
     dest: /tmp/kafka-manager.zip
     mode: 0644
   when: kafka_manager.installation_type is defined and kafka_manager.installation_type == local
