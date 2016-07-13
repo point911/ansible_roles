@@ -1,29 +1,13 @@
-- name: Create upstart config
-  become: yes
-  template:
-    dest: "{{ kafka_manager.upstart_conf }}"
-    owner: root
-    group: root
-    mode: 0644
-    src: kafka_manager.conf.j2
-  notify:
-    - restart kafka_manager
-
-#- name: Create kafka manager properties
+#- name: Create upstart config
 #  become: yes
-#  become_user: "{{ kafka.user }}"
 #  template:
-#    dest: "/home/{{ kafka.user }}/etc/server.properties"
-#    mode: 0640
-#    src: server.properties.j2
+#    dest: "{{ kafka_manager.upstart_conf }}"
+#    owner: root
+#    group: root
+#    mode: 0644
+#    src: kafka_manager.conf.j2
 #  notify:
-#    - restart kafka
-
-
-#- name: Running web application
-#  shell: nohup /root/bi6-1.0-SNAPSHOT/bin/bi6 -Dconfig.resource="production.conf" -DBYPASS_TWO_FACTOR_AUTH=true > /dev/null 2>&1 &
-#  environment: "{{ env_vars }}"
-
+#    - restart kafka_manager
 
 #- name: Ensure Kafka Manager is running
 #  become: yes
@@ -31,6 +15,11 @@
 #    name: kafka_manager
 #    state: started
 #    enabled: yes
+
+
+#- name: Running kafka manager application
+#  shell: nohup /root/bi6-1.0-SNAPSHOT/bin/kafka-manager -Dconfig.file=/path/to/application.conf -Dhttp.port={{ kafka_manager.port }} > /dev/null 2>&1 &
+#  environment: "{{ kafka_manager.env_vars }}"
 
 #- name: Wait for Kafka port
 #  wait_for:

@@ -8,7 +8,7 @@
     state: directory
     path: "{{ item }}"
   with_items:
-    - "/home/{{ kafka_manager.user }}/kafka-manager"
+    - "/home/{{ kafka_manager.user }}/etc"
 
 - name: Fetch kafka manager sources
   become: yes
@@ -18,9 +18,29 @@
     dest=/tmp/kafka-manager.zip
     mode=0644
     force=no
+  when: kafka_manager.installation_type is not defined
+
+- name: Fetch kafka zip file from repo
+  become: yes
+  become_user: "{{ kafka_manager.user }}"
+  copy:
+    src: {{ kafka_manager.zip_path }}
+    dest: /tmp/kafka-manager.zip
+    mode: 0644
+  when: kafka_manager.installation_type is defined and kafka_manager.installation_type == local
 
 - name: unpack the Kafka Manager ZIP
+  become: yes
+  become_user: "{{ kafka_manager.user }}"
   unarchive:
     copy=no
     src=/tmp/kafka-manager.zip
     dest=/home/{{ kafka_manager.user }}/
+
+- name: Link kafka manager to the right version
+  become: yes
+  become_user: "{{ kafka_manager.user }}"
+  file:
+    path: "/home/{{ kafka.user }}/kafka_manager"
+    src: "/home/{{ kafka.user }}/kafka-manager-{{ kafka_manager.sources_tag }}"
+    state: link
