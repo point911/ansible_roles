@@ -41,8 +41,4 @@
 - name: Link kafka manager to the right version
   become: yes
   become_user: "{{ kafka_manager.user }}"
-  file:
-    path: "/home/{{ kafka_manager.user }}/kafka_manager"
-    src: "/home/{{ kafka_manager.user }}/kafka-manager-{{ kafka_manager.sources_tag }}"
-    state: link
-    force: yes
+  shell: ln -s /home/{{ kafka_manager.user }}/kafka-manager-{{ kafka_manager.sources_tag }} /home/{{ kafka_manager.user }}/kafka_manager
