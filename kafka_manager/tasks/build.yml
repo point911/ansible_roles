@@ -19,5 +19,5 @@
 - name: unpack the Kafka Manager ZIP
   unarchive:
     copy=no
-    src=/tmp/kafka-manager-master.zip
+    src=/tmp/kafka-manager.zip
     dest=/home/{{ kafka_manager.user }}/kafka-manager
