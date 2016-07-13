@@ -1,0 +1,19 @@
+---
+
+- name: start kafka manager
+  become: yes
+  service:
+    name: kafka_manager
+    state: started
+
+- name: stop kafka manager
+  become: yes
+  service:
+    name: kafka_manager
+    state: stopped
+
+- name: restart kafka manager
+  become: yes
+  service:
+    name: kafka_manager
+    state: restarted

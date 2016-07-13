@@ -1,0 +1,24 @@
+- name: Ensure install folders
+  become: yes
+  become_user: "{{ kafka_manager.user }}"
+  file:
+    state: directory
+    path: "{{ item }}"
+  with_items:
+    - "/home/{{ kafka_manager.user }}/kafka-manager"
+
+
+- name: Fetch kafka manager sources
+  become: yes
+  become_user: "{{ kafka_manager.user }}"
+  get_url:
+    url=https://github.com/yahoo/kafka-manager/archive/{{ kafka_manager.sources_tag }}.zip
+    dest=/tmp/kafka-manager.zip
+    mode=0644
+    force=no
+
+- name: unpack the Kafka Manager ZIP
+  unarchive:
+    copy=no
+    src=/tmp/kafka-manager-master.zip
+    dest=/home/{{ kafka_manager.user }}/kafka-manager
