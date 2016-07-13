@@ -1,3 +1,6 @@
+- name: Install some dependencies
+  apt: name=unzip state=installed
+
 - name: Ensure install folders
   become: yes
   become_user: "{{ kafka_manager.user }}"
