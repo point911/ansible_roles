@@ -28,7 +28,7 @@
     src: "{{ kafka_manager.zip_path }}"
     dest: /tmp/kafka-manager.zip
     mode: 0644
-  when: kafka_manager.installation_type is defined and kafka_manager.installation_type == local
+  when: kafka_manager.installation_type == "local"
 
 - name: unpack the Kafka Manager ZIP
   become: yes
@@ -41,4 +41,4 @@
 - name: Link kafka manager to the right version
   become: yes
   become_user: "{{ kafka_manager.user }}"
-  shell: ln -s /home/{{ kafka_manager.user }}/kafka-manager-{{ kafka_manager.sources_tag }} /home/{{ kafka_manager.user }}/kafka_manager
+  shell: ln -s /home/{{ kafka_manager.user }}/kafka-manager-{{ kafka_manager.sources_tag }} /home/{{ kafka_manager.user }}/kafka-manager

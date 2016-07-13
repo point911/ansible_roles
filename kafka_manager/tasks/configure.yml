@@ -17,12 +17,12 @@
 #    enabled: yes
 
 
-#- name: Running kafka manager application
-#  shell: nohup /root/bi6-1.0-SNAPSHOT/bin/kafka-manager -Dconfig.file=/path/to/application.conf -Dhttp.port={{ kafka_manager.port }} > /dev/null 2>&1 &
-#  environment: "{{ kafka_manager.env_vars }}"
+- name: Running kafka manager application
+  shell: nohup /home/{{ kafka_manager.user }}/kafka-manager/bin/kafka-manager -Dconfig.file=/path/to/application.conf -Dhttp.port={{ kafka_manager.port }} > /dev/null 2>&1 &
+  environment: "{{ kafka_manager.env_vars }}"
 
-#- name: Wait for Kafka port
-#  wait_for:
-#    port: "{{ kafka_manager.port }}"
-#    state: started
-#    timeout: 30
+- name: Wait for Kafka port
+  wait_for:
+    port: "{{ kafka_manager.port }}"
+    state: started
+    timeout: 30
