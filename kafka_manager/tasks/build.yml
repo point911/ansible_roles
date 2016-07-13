@@ -7,7 +7,6 @@
   with_items:
     - "/home/{{ kafka_manager.user }}/kafka-manager"
 
-
 - name: Fetch kafka manager sources
   become: yes
   become_user: "{{ kafka_manager.user }}"
