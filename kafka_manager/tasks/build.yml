@@ -2,7 +2,12 @@
   apt: name={{ item }} state=installed
   with_items:
     - unzip
+    - python-pip
+
+- name: Install python dependencies
+  pip: name={{ item }} state=present
     - boto
+    - boto3
     - awscli
 
 - name: Ensure install folders
@@ -33,6 +38,19 @@
     dest: /tmp/kafka-manager.zip
     mode: 0644
   when: kafka_manager.installation_type == "local"
+
+- name: Fetch kafka zip file from AWS S3
+  become: yes
+  become_user: "{{ kafka_manager.user }}"
+  s3:
+    bucket: "{{ aws.s3.bucket }}"
+    aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY') }}"
+    aws_secret_key: "{{ lookup('env','AWS_SECRET_KEY') }}"
+    region: "{{ lookup('env','AWS_REGION') }}"
+    object: "/{{ aws.s3.object }}"
+    dest: "{{ aws.s3.download_path }}"
+    mode: get
+  when: kafka_manager.installation_type == "s3"
 
 - name: unpack the Kafka Manager ZIP
   become: yes
