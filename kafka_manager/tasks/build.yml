@@ -1,5 +1,9 @@
 - name: Install some dependencies
-  apt: name=unzip state=installed
+  apt: name={{ item }} state=installed
+  with_items:
+    - unzip
+    - boto
+    - awscli
 
 - name: Ensure install folders
   become: yes
