@@ -81,6 +81,7 @@
 
 - name: Wait for Kafka port
   wait_for:
+    host: "{{ kafka.listner_ip }}"
     port: "{{ kafka.port }}"
     state: started
     timeout: 30
