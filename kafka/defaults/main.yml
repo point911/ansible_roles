@@ -1,6 +1,7 @@
 ---
 
 kafka:
+  listner_ip: ""
   apache_mirror: http://apache.mirror.anlx.net/
   auto_create_topics: "false"
   conf_dir: /home/kafka/etc

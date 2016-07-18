@@ -28,7 +28,7 @@ broker.id={{ loop.index0 }}
 
 ############################# Socket Server Settings #############################
 
-listeners=PLAINTEXT://:9092
+listeners=PLAINTEXT://{{ kafka.listner_ip }}:9092
 
 # The port the socket server listens on
 #port=9092
