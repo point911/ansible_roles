@@ -12,15 +12,15 @@
 #    - restart kafka
 #  when: kafka.version_kafka == "0.8.1.1"
 
-- name: Overwrite JMX options
-  become: yes
-  lineinfile:
-    dest: "/home/{{ kafka.user }}/kafka/bin/kafka-run-class.sh"
-    regexp: "KAFKA_JMX_OPTS=.*-Dcom.sun.management.jmxremote.authenticate"
-    line: "KAFKA_JMX_OPTS=\"{{ kafka.jmx_opts }}\""
-  notify:
-    - restart kafka
-  when: kafka.jmx_opts is defined
+#- name: Overwrite JMX options
+#  become: yes
+#  lineinfile:
+#    dest: "/home/{{ kafka.user }}/kafka/bin/kafka-run-class.sh"
+#    regexp: "KAFKA_JMX_OPTS=.*-Dcom.sun.management.jmxremote.authenticate"
+#    line: "KAFKA_JMX_OPTS=\"{{ kafka.jmx_opts }}\""
+#  notify:
+#    - restart kafka
+#  when: kafka.jmx_opts is defined
 
 - name: Create upstart config
   become: yes
