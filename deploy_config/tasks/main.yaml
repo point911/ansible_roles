@@ -1,6 +1,6 @@
 ---
 
-- name: Generate aws vars
+- name: Generate aws deploy vars
   template:
     src: "{{ deploy_vars_template_path | default('vars/deploy/deploy.yaml.template') }}"
     dest: "{{ deploy_vars_path | default('vars/deploy/deploy.yaml') }}"
