@@ -62,9 +62,13 @@
     dest=/home/{{ kafka_manager.user }}/
 
 - stat: path=/home/{{ kafka_manager.user }}/kafka-manager
+  become: yes
+  become_user: "{{ kafka_manager.user }}"
   register: kafka_manager_link
 
 - shell: unlink /home/{{ kafka_manager.user }}/kafka-manager
+  become: yes
+  become_user: "{{ kafka_manager.user }}"
   when: kafka_manager_link.stat.exists
 
 - name: Link kafka manager to the right version
