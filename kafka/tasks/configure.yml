@@ -61,17 +61,6 @@
   notify:
     - restart kafka
 
-- stat: path=/home/{{ kafka.user }}/data/meta.properties
-  become: yes
-  become_user: "{{ kafka.user }}"
-  register: kafka_manager_link
-
-- shell: unlink /home/{{ kafka.user }}/data/meta.properties
-  become: yes
-  become_user: "{{ kafka.user }}"
-  when: kafka_manager_link.stat.exists
-
-
 - name: Create server.properties
   become: yes
   become_user: "{{ kafka.user }}"
