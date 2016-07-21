@@ -2,7 +2,7 @@
 
 kafka:
   listner_ip: ""
-  apache_mirror: http://apache.mirror.anlx.net/
+  apache_mirror: http://www-us.apache.org/dist
   auto_create_topics: "false"
   conf_dir: /home/kafka/etc
   data_dir: /home/kafka/data
