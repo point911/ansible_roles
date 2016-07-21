@@ -28,7 +28,7 @@
 
 - name: Running kafka manager application
   shell: nohup /home/{{ kafka_manager.user }}/kafka-manager/bin/kafka-manager -Dconfig.file=/home/{{ kafka_manager.user }}/etc/application.conf -Dhttp.port={{ kafka_manager.port }} > /dev/null 2>&1 &
-#  environment: "{{ kafka_manager.env_vars }}"
+  environment: "{{ kafka_manager.env_vars }}"
 
 - name: Wait for Kafka Manager port
   wait_for:
