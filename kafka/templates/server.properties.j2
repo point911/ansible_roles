@@ -21,7 +21,9 @@
   {%- set url_host = url.split(':')[0] -%}
   {%- if url_host == ansible_fqdn or url_host in ansible_all_ipv4_addresses
          or ( kafka.id is defined and loop.index0 == kafka.id | int ) -%}
-broker.id={{ loop.index0 }}
+{# broker.id={{ loop.index0 }} #}
+
+broker.id={{ metavars[inventory_groups.kafka][url_host]['broker_id'] }}
 
   {% endif %}
 {% endfor %}
