@@ -6,6 +6,21 @@ node.name: {{ ansible_hostname }}
 cluster.name: {{ elasticsearch.cluster_name }}
 network.host: {{ ansible_eth0.ipv4.address }}
 
+{% if "master" in ec2_tag_Name %}
+node.master: true
+node.data: false
+{% endif %}
+
+{% if "data" in ec2_tag_Name %}
+node.master: false
+node.data: true
+{% endif %}
+
+{% if "client" in ec2_tag_Name %}
+node.master: false
+node.data: false
+{% endif %}
+
 path.data: {{ elasticsearch.paths.data }}
 path.logs: {{ elasticsearch.paths.logs }}
 
