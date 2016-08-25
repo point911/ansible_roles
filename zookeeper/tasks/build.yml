@@ -1,12 +1,5 @@
 ---
 
-- name: Install Zookeeper supporting packages
-  become: yes
-  apt:
-    name: "{{ item }}"
-  with_items:
-    - openjdk-7-jre-headless
-
 - name: Create Zookeeper directories
   become: yes
   become_user: "{{ zookeeper.user }}"
