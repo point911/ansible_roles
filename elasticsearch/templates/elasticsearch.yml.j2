@@ -27,6 +27,11 @@ path.logs: {{ elasticsearch.paths.logs }}
 index.number_of_shards: {{ elasticsearch.index.number_of_shards }}
 index.number_of_replicas: {{ elasticsearch.index.number_of_replicas }}
 
+indices.fielddata.cache.size: 60%
+indices.breaker.fielddata.limit: 65%
+indices.breaker.request.limit: 60%
+indices.breaker.total.limit: 75%
+
 {% if elasticsearch.bootstrap_mlockall is defined %}
 bootstrap.mlockall: {{ elasticsearch.bootstrap_mlockall }}
 {% endif %}
