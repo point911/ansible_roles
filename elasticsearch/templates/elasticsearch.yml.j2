@@ -9,19 +9,22 @@ network.host: {{ ansible_eth0.ipv4.address }}
 {% if "master" in ec2_tag_Name %}
 node.master: true
 node.data: false
+path.data: {{ elasticsearch.paths.master_data }}
 {% endif %}
 
 {% if "data" in ec2_tag_Name %}
 node.master: false
 node.data: true
+path.data: {{ elasticsearch.paths.data_data }}
 {% endif %}
 
 {% if "client" in ec2_tag_Name %}
 node.master: false
 node.data: false
+path.data: {{ elasticsearch.paths.client_data }}
 {% endif %}
 
-path.data: {{ elasticsearch.paths.data }}
+
 path.logs: {{ elasticsearch.paths.logs }}
 
 index.number_of_shards: {{ elasticsearch.index.number_of_shards }}
