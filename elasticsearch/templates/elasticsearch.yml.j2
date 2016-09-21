@@ -92,3 +92,17 @@ repositories.s3.region: "{{ elasticsearch.plugin_config.aws.repository.region }}
 {% for extra_config in elasticsearch.extra_config %}
 {{ extra_config }}
 {% endfor %}
+
+script.engine.groovy.inline.plugin: on
+watcher.actions.email.service.account:
+  work:
+    profile: gmail
+    email_defaults:
+      from: "{{ elasticsearch.watcher.from }}"
+    smtp:
+      auth: true
+      starttls.enable: true
+      host: smtp.gmail.com
+      port: 587
+      user: "{{ elasticsearch.watcher.user }}"
+      password: "{{ elasticsearch.watcher.password }}"

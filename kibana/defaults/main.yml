@@ -4,7 +4,7 @@ kibana:
   host: localhost
   install_dir: "/usr/share/kibana4"
   port: 5601
-  tarball: "kibana-4.5.1-linux-x64"
+  tarball: "kibana-4.6.1-linux-x64"
 
   elasticsearch:
     host: localhost

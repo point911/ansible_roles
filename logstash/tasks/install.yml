@@ -1,21 +1,12 @@
 ---
+- name: Download logstash
+  get_url:
+    url: https://download.elastic.co/logstash/logstash/packages/debian/logstash-2.4.0_all.deb
+    dest: /tmp/
 
-- name: Add Logstash gpg key
+- name: install logstash
   become: yes
-  apt_key:
-    url: https://packages.elasticsearch.org/GPG-KEY-elasticsearch
-    state: present
-
-- name: Install Logstash repo
-  become: yes
-  apt_repository:
-    repo: "deb http://packages.elasticsearch.org/logstash/{{ logstash.family }}/debian stable main"
-    state: present
-
-- name: Install Logstash
-  become: yes
-  apt:
-    name: "logstash={{ logstash.version }}"
+  shell: dpkg -i /tmp/logstash-2.4.0_all.deb
 
 - name: Install logstash plugins
   become: yes

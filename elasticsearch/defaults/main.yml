@@ -11,7 +11,7 @@ elasticsearch:
   family: 2.x
   java_heap_size: "{{ (ansible_memtotal_mb / 2) | int }}"
   port: 9200
-  version: 2.3.3
+  version: 2.4.0
 
   index:
     number_of_shards: 1
@@ -31,14 +31,18 @@ elasticsearch:
   plugins:
     - plugin_name: mobz/elasticsearch-head
       plugin_dir:  head
-#    - plugin_name: royrusso/elasticsearch-HQ
-#      plugin_dir:  HQ
+    - plugin_name: royrusso/elasticsearch-HQ
+      plugin_dir:  HQ
     - plugin_name: license
       plugin_dir:  license
     - plugin_name: marvel-agent
       plugin_dir:  marvel-agent
     - plugin_name: lmenezes/elasticsearch-kopf
       plugin_dir:  kopf
+    - plugin_name: watcher
+      plugin_dir:  watcher
+
+
 
   plugin_config:
     aws:
@@ -52,3 +56,8 @@ elasticsearch:
         enabled: false
         bucket: changeme
         region: changeme
+
+  watcher:
+    from: xxx@xxx.com
+    user: xxxxx
+    password: yyyyy
