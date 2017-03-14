@@ -16,7 +16,7 @@ zookeeper:
   log_dir: /home/zookeeper/log
   log_level: WARN
   user: zookeeper
-  version: 3.4.8
+  version: 3.4.9
 
   # If enabled AWS will be used to figure out which host and id should be used
   # Note that you must install the AWS CLI tools on the machine to use this feature

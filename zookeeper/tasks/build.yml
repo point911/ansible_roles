@@ -1,5 +1,4 @@
 ---
-
 - name: Create Zookeeper directories
   become: yes
   become_user: "{{ zookeeper.user }}"
