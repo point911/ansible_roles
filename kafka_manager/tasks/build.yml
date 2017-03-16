@@ -31,7 +31,7 @@
     force=no
   when: kafka_manager.installation_type is not defined
 
-- name: Fetch kafka zip file from repo
+- name: Fetch kafka manager zip file from repo
   become: yes
   become_user: "{{ kafka_manager.user }}"
   copy:

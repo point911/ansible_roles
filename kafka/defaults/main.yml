@@ -35,3 +35,7 @@ kafka:
   zookeeper_connection_timeout_ms: 6000
   zookeeper_hosts:
     - localhost:2181
+
+
+jmx_rmi_port: 1099
+jmx_remote_port: 9010
