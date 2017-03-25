@@ -1,27 +1,4 @@
-#---
-#
-## Needed to ensure some services start properly
-
-#- name: Overwrite the start script so the Java Opts can be changed if Kafka 0.8.1.1
-#  become: yes
-#  lineinfile:
-#    dest: "/opt/kafka_2.9.2-{{ kafka.version_kafka }}/bin/kafka-server-start.sh"
-#    regexp: "^export KAFKA_HEAP_OPTS="
-#    line: "export KAFKA_HEAP_OPTS=\"{{ kafka.heap_opts }}\""
-#  notify:
-#    - restart kafka
-#  when: kafka.version_kafka == "0.8.1.1"
-#
-- name: Overwrite JMX options
-  become: yes
-  lineinfile:
-    dest: "/home/{{ kafka.user }}/kafka/bin/kafka-run-class.sh"
-    regexp: "KAFKA_JMX_OPTS=.*-Dcom.sun.management.jmxremote.authenticate"
-    line: "KAFKA_JMX_OPTS=\"{{ kafka.jmx_opts }}\""
-  notify:
-    - restart kafka
-  when: kafka.jmx_opts is defined
-
+---
 - name: Create upstart config
   become: yes
   template:

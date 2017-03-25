@@ -8,7 +8,12 @@ respawn
 limit nofile 32768 32768
 
 # Rather than using setuid/setgid sudo is used because the pre-start task must run as root
+
+script
+export KAFKA_JMX_OTS="{{ kafka.jmx_opts }}"
+
 exec sudo -Hu {{ kafka.user }} -g {{ kafka.group }} \
     KAFKA_HEAP_OPTS="{{ kafka.heap_opts }}" \
     /home/{{ kafka.user }}/kafka/bin/kafka-server-start.sh \
     /home/{{ kafka.user }}/kafka/config/server.properties
+end script
