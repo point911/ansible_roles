@@ -35,13 +35,26 @@
     src: "/home/{{ zookeeper.user }}/zookeeper-{{ zookeeper.version }}"
     state: link
 
-- name: Create Zookeeper service
+
+- name: Create Zookeeper service for Upstart
   become: yes
   template:
     dest: /etc/init/zookeeper.conf
     mode: 644
     owner: root
     src: zookeeper.service.j2
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
+
+
+- name: Create Zookeeper service for SystemD
+  become: yes
+  template:
+    src: zookeeper_systemd.service.j2
+    dest: /etc/systemd/system/zookeeper.service
+    owner: root
+    mode: 0644
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+
 
 - name: Ensure Zookeeper runs on boot
   become: yes
