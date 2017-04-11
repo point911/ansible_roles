@@ -1,0 +1,20 @@
+[Unit]
+Description=Zookeeper
+StartLimitBurst=2
+StartLimitInterval=5
+
+[Service]
+User={{ zookeeper.user }}
+Group={{ zookeeper.group }}
+Type=forking
+
+ExecStart=/home/{{ zookeeper.user }}/zookeeper/bin/zkServer.sh start
+ExecStop=/home/{{ zookeeper.user }}/zookeeper/bin/zkServer.sh stop
+ExecReload=/home/{{ zookeeper.user }}/zookeeper/bin/zkServer.sh restart
+WorkingDirectory=/home/{{ zookeeper.user }}
+
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
