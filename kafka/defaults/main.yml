@@ -30,8 +30,8 @@ kafka:
   upstart_conf: /etc/init/kafka.conf
   use_systemd: no
   user: kafka
-  version_kafka: "0.10.0.0"
-  version_scala: "2.11"
+  version_kafka: "0.10.2.0"
+  version_scala: "2.12"
   zookeeper_connection_timeout_ms: 6000
   zookeeper_hosts:
     - localhost:2181
