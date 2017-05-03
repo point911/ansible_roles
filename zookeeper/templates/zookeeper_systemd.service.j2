@@ -7,7 +7,9 @@ StartLimitInterval=5
 User={{ zookeeper.user }}
 Group={{ zookeeper.group }}
 Type=forking
-
+SyslogIdentifier=zookeeper
+Restart=always
+RestartSec=0s
 ExecStart=/home/{{ zookeeper.user }}/zookeeper/bin/zkServer.sh start
 ExecStop=/home/{{ zookeeper.user }}/zookeeper/bin/zkServer.sh stop
 ExecReload=/home/{{ zookeeper.user }}/zookeeper/bin/zkServer.sh restart

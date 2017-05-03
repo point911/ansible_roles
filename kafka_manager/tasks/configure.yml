@@ -1,15 +1,16 @@
 - name: Create application config
+  become: yes
   template:
     dest: /home/{{ kafka_manager.user }}/etc/application.conf
-    owner: root
-    group: root
+    owner: "{{ kafka_manager.user }}"
+    group: "{{ kafka_manager.user }}"
     mode: 0644
     src: application.conf.j2
 
-
 - name: Running kafka manager application
-  shell: nohup /home/{{ kafka_manager.user }}/kafka-manager/bin/kafka-manager -Dconfig.file=/home/{{ kafka_manager.user }}/etc/application.conf -Dhttp.port={{ kafka_manager.port }} > /dev/null 2>&1 &
-  environment: "{{ kafka_manager.env_vars }}"
+  become: yes
+  shell: "nohup /home/{{ kafka_manager.user }}/kafka-manager/bin/kafka-manager -Dconfig.file=/home/{{ kafka_manager.user }}/etc/application.conf -Dhttp.port={{ kafka_manager.port }} > /dev/null 2>&1 &"
+#  environment: "{{ kafka_manager.env_vars }}"
 
 - name: Wait for Kafka Manager port
   wait_for:
