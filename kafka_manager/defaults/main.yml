@@ -3,3 +3,4 @@ kafka_manager:
   sources_tag: 1.3.0.8
   upstart_conf: /etc/init/kafka-manager.conf
   port: 9000
+  zip_path: https://github.com/yahoo/kafka-manager/archive/1.3.3.4.zip
